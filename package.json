@@ -1,0 +1,23 @@
+{
+  "name": "electron-updater-generic-example",
+  "version": "0.0.3",
+  "main": "main.js",
+  "description": "electron-updater generic example project",
+  "author": "Matt Haggard",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "dependencies": {
+    "electron-log": "^4.4.7",
+    "electron-publish": "24.5.0",
+    "electron-publisher-custom": "^0.1.0-beta.0",
+    "electron-updater": "6.1.4",
+    "http-server": "^14.1.0"
+  },
+  "devDependencies": {
+    "electron": "23.1.4",
+    "electron-builder": "23.6.0"
+  }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Electron Updater Example</title>
+  </head>
+  <body>
+    Current version: <span id="version">vX.Y.Z</span>
+    <form>
+      <label for="host-input">
+        <input id="host-input"
+               placeholder="Your server address" type="text"
+               onkeydown="sendToElectron(event, this.value)">
+        <button onclick="sendToElectron(event, document.getElementById('host-input').value)">Send</button>
+      </label>
+    </form>
+    <div id="messages"></div>
+    <script>
+      // Display the current version
+      let version = window.location.hash.split('v')[1];
+      document.getElementById('version').innerText = version;
+
+      // Listen for input server host
+      async function sendToElectron(event, host) {
+        if (host && event.keyCode === 13 || event.type === 'click') {
+          const {ipcRenderer} = require('electron')
+
+          // send username to main.js
+          ipcRenderer.send('check-updates', host)
+
+          // receive message from main.js
+          // ipcRenderer.on('check-updates-reply', (event, arg) => {
+          //   console.log(arg)
+          // })
+        }
+      }
+
+      // Listen for messages
+      const { ipcRenderer } = require('electron');
+      ipcRenderer.on('message', function(event, text) {
+        let container = document.getElementById('messages');
+        let message = document.createElement('div');
+        message.innerHTML = text;
+        container.appendChild(message);
+      })
+    </script>
+  </body>
+</html>

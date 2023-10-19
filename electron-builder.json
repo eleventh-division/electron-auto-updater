@@ -1,0 +1,17 @@
+{
+  "directories": {
+    "buildResources": "resources",
+    "output": "build"
+  },
+  "publish": [
+    {
+      "provider": "custom"
+    }
+  ],
+  "appId": "com.electron.app",
+  "productName": "App",
+  "linux": {
+    "target": "AppImage"
+  },
+  "asar": false
+}
